@@ -61,7 +61,10 @@ function completedButtons(){
 
 
 function editButtons(){
-    console.log("djfkgndfkjgn");
+    let newToDo = prompt("ne ile değiştirmek istersiniz?")
+    let x = this.parentElement.previousElementSibling.innerText
+    console.log(newToDo);
+
 }
 
 
@@ -76,7 +79,6 @@ function deleteButtons(){
     //      
     //     }
     // }
-
 
     const index = todosList.findIndex((todo)=>Number(todo.id)===Number(this.parentElement.parentElement.dataset.todoid))
     if(index !== -1){
