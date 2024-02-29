@@ -61,8 +61,8 @@ function completedButtons(){
 
 
 function editButtons(){
-    let newToDo = prompt("ne ile değiştirmek istersiniz?")
-    let x = this.parentElement.previousElementSibling.innerText
+    const newToDo = prompt("ne ile değiştirmek istersiniz?")
+    this.parentElement.previousElementSibling.innerText = newToDo
     console.log(newToDo);
 
 }
