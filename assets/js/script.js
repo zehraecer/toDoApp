@@ -5,8 +5,18 @@ let id = 0;
 let todosList=[]
 
 
-addBtn.addEventListener("click",addTodo)
+// if(localStorage.todosList){
+//     todosList = JSON.parse(localStorage.todosList)
+// }else{
+//     todosList = [];
+// }
 
+localStorage.setItem("todolar",JSON.stringify(todosList))
+JSON.parse(localStorage.getItem("todolar"))
+
+
+
+addBtn.addEventListener("click",addTodo)
 function inputValue(){
     let content = newToDo.value 
     return content
@@ -22,6 +32,9 @@ function addTodo(){
         id:id,
         content:contents})  
     id++
+    localStorage.todosList = JSON.stringify(todosList)
+
+
     listTodos();
     console.log(todosList);
 }
@@ -30,7 +43,16 @@ function listTodos(){
     todos.innerHTML="";
     for (const  todo of todosList) {
         todos.innerHTML+=`
-        <li  class="todo" data-todoid="${todo.id}"> <span>${todo.content}</span><div class="btns"><a class="deleteBtn" href="#">Sil</a> <a class="editBtn" href="#">Düzenle</a> <a class="completedBtn" href="#">Tamamlandı</a></div> </li>
+        <li  class="todo" data-todoid="${todo.id}">
+                <span>
+                    ${todo.content}
+                </span>
+                <div class="btns">
+                    <a class="deleteBtn" href="#">Sil</a>
+                    <a class="editBtn" href="#">Düzenle</a> 
+                    <a class="completedBtn" href="#">Tamamlandı</a>
+                </div> 
+          </li>
         `      
     }
     bindEvents()
@@ -88,7 +110,6 @@ function deleteButtons(){
     if(index !== -1){
        todosList.splice(index,1)
     }
-
     listTodos()
     // this.parentElement.parentElement.remove()
 }
