@@ -1,0 +1,111 @@
+*{
+    padding: 0%;
+    margin: 0%;
+
+}
+body{
+    background-color: hsl(235, 21%, 11%);
+    font-family: "Josefin Sans", sans-serif;
+    background-image: url("../img/bg-desktop-dark.jpg");
+    background-repeat:no-repeat;
+    background-position: top;
+    /* background-size: cover; */
+    
+}
+.img{
+    width: 100%;
+}
+
+a{text-decoration: none;}
+.container{
+    max-width: 710px;
+    margin-inline: auto;
+    margin-top: 50px;
+}
+.header{
+    width: 100%;
+    display:flex;
+    justify-content: space-between;
+    margin-bottom: 55px;
+    
+    h1{
+        opacity: 0.9;
+        color: #fff;
+        margin-top: 20px;
+        letter-spacing: 15px
+    }
+    img{
+        width: 35px;
+        height: 35px;
+        padding: 10px;
+        padding-right: 15px;
+    }
+}
+.toDo{
+   padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    background-color: hsl(235, 24%, 19%);
+    border-radius: 15px;
+    margin-bottom: 30px;
+
+    input[type="text"]{
+      width: 500px;
+      background-color: hsl(235, 24%, 19%);
+      padding: 20px;
+      border: none;
+      border-radius: 10px;
+      color:  hsl(234, 11%, 52%);
+      font-weight: 500;
+      font-size: 22px;
+      
+    }
+    input[type="text"]:focus{
+        outline: none;
+    }
+   
+    a{
+        padding: 10px;
+        background-color:hsl(233, 23%, 51%);
+        border-radius: 20px;
+        padding-right: 10px;
+        padding-top: 25px;
+        font-weight: 500;
+        font-size: 22px;
+        color: hsl(235, 24%, 19%);
+        cursor: pointer;
+    
+    }
+}
+
+.toDos{
+    background-color: hsl(235, 24%, 19%);
+    border-radius: 10px;
+    margin-bottom: 40px;
+    border-bottom: none;
+}
+.todo{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid hsl(234, 11%, 36%) ;
+    border-radius: 0px;
+    color: #fff;
+    list-style: none;
+    font-weight: 500;
+    font-size: 20px;
+    padding: 28px;
+    
+}
+.btns{
+    a{
+     padding: 10px;
+     font-weight: 500;
+     font-size: 22px;
+     color: hsl(235, 17%, 87%);
+    background-color:hsl(233, 23%, 51%);
+    border-radius: 10px;
+    }
+}
+.cross-out{
+    text-decoration: line-through;
+}
