@@ -7,6 +7,7 @@ let todosList=[]
 localStorage.setItem("todos", JSON.stringify(todosList))
 localStorage.getItem("todos")
 
+
 function inputValue(){
     let content = newToDo.value 
     return content
@@ -27,7 +28,16 @@ function listTodos(){
     todos.innerHTML="";
     for (const  todo of todosList) {
         todos.innerHTML+=`
-        <li  class="todo" data-todoid="${todo.id}"> <span>${todo.content}</span><div class="btns"><a class="deleteBtn" href="#">Sil</a> <a class="editBtn" href="#">Düzenle</a> <a class="completedBtn" href="#">Tamamlandı</a></div> </li>
+        <li class="todo" data-todoid="${todo.id}">
+            <span>
+            ${todo.content}
+            </span>
+            <div class="btns">
+                <a class="deleteBtn" href="#">Sil</a>
+                <a class="editBtn" href="#">Düzenle</a> 
+                <a class="completedBtn" href="#">Tamamlandı</a>
+            </div> 
+         </li>
         `      
     }
     bindEvents()
