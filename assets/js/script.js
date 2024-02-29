@@ -4,14 +4,16 @@ const todos = document.querySelector(".toDos")
 let id = 0;
 let todosList=[]
 
-localStorage.setItem("todos", JSON.stringify(todosList))
-localStorage.getItem("todos")
 
+addBtn.addEventListener("click",addTodo)
 
 function inputValue(){
     let content = newToDo.value 
     return content
 }
+
+
+
 
 
 function addTodo(){
@@ -28,16 +30,7 @@ function listTodos(){
     todos.innerHTML="";
     for (const  todo of todosList) {
         todos.innerHTML+=`
-        <li class="todo" data-todoid="${todo.id}">
-            <span>
-            ${todo.content}
-            </span>
-            <div class="btns">
-                <a class="deleteBtn" href="#">Sil</a>
-                <a class="editBtn" href="#">Düzenle</a> 
-                <a class="completedBtn" href="#">Tamamlandı</a>
-            </div> 
-         </li>
+        <li  class="todo" data-todoid="${todo.id}"> <span>${todo.content}</span><div class="btns"><a class="deleteBtn" href="#">Sil</a> <a class="editBtn" href="#">Düzenle</a> <a class="completedBtn" href="#">Tamamlandı</a></div> </li>
         `      
     }
     bindEvents()
@@ -52,15 +45,15 @@ function bindEvents(){
 
     for (const deleteBtn of deleteBtns) {
         deleteBtn.addEventListener("click",deleteButtons)
-        
+
     }
     for (const editBtn of editBtns) {
         editBtn.addEventListener("click",editButtons)
-        
+
     }
     for (const completedBtn of completedBtns) {
         completedBtn.addEventListener("click",completedButtons)
-        
+
     }
 
 }
@@ -71,10 +64,10 @@ function completedButtons(){
 
 
 function editButtons(){
+    console.log("djfkgndfkjgn");
     const newToDo = prompt("ne ile değiştirmek istersiniz?")
     this.parentElement.previousElementSibling.innerText = newToDo
-    console.log(newToDo);
-
+    console.log(newToDo)
 }
 
 
@@ -89,6 +82,7 @@ function deleteButtons(){
     //      
     //     }
     // }
+
 
     const index = todosList.findIndex((todo)=>Number(todo.id)===Number(this.parentElement.parentElement.dataset.todoid))
     if(index !== -1){
