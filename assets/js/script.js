@@ -2,16 +2,16 @@ const newToDo = document.querySelector(".newToDo")
 const addBtn = document.querySelector(".addBtn")
 const todos = document.querySelector(".toDos")
 let id = 0;
+let todosList=[]
 
-
-addBtn.addEventListener("click",addTodo)
+localStorage.setItem("todos", JSON.stringify(todosList))
+localStorage.getItem("todos")
 
 function inputValue(){
     let content = newToDo.value 
     return content
 }
 
-let todosList=[]
 
 function addTodo(){
     let contents = inputValue()
