@@ -5,14 +5,21 @@ let id = 0;
 let todosList=[]
 
 
-// if(localStorage.todosList){
-//     todosList = JSON.parse(localStorage.todosList)
-// }else{
-//     todosList = [];
+if(localStorage.todosList){
+    todosList = JSON.parse(localStorage.todosList)
+}else{
+    todosList = [];
+}
+
+
+// if(!localStorage.getItem("todolar")){
+//     localStorage.setItem("todolar", JSON.stringify(todosList));
 // }
 
-localStorage.setItem("todolar",JSON.stringify(todosList))
-JSON.parse(localStorage.getItem("todolar"))
+// const comments = JSON.parse(localStorage.getItem("todolar"));
+
+
+// JSON.parse(localStorage.getItem("todolar"))
 
 
 
@@ -32,11 +39,9 @@ function addTodo(){
         id:id,
         content:contents})  
     id++
-    localStorage.todosList = JSON.stringify(todosList)
-
-
     listTodos();
-    console.log(todosList);
+console.log(todosList);
+
 }
 
 function listTodos(){
