@@ -2,30 +2,19 @@ const newToDo = document.querySelector(".newToDo")
 const addBtn = document.querySelector(".addBtn")
 const todos = document.querySelector(".toDos")
 let id = 0;
-let todosList=[]
+// let todosList=[]
+let todosList =JSON.parse(localStorage.getItem('todolar')) || [];
 
-
-if(localStorage.todosList){
-    todosList = JSON.parse(localStorage.todosList)
-}else{
-    todosList = [];
+function saveTaskToLocalStorage(){
+    return localStorage.setItem('todolar', JSON.stringify(todosList));
 }
-
-
-// if(!localStorage.getItem("todolar")){
-//     localStorage.setItem("todolar", JSON.stringify(todosList));
-// }
-
-// const comments = JSON.parse(localStorage.getItem("todolar"));
-
-
-// JSON.parse(localStorage.getItem("todolar"))
 
 
 
 addBtn.addEventListener("click",addTodo)
 function inputValue(){
-    let content = newToDo.value 
+    let content = newToDo.value
+    saveTaskToLocalStorage()
     return content
 }
 
@@ -39,8 +28,9 @@ function addTodo(){
         id:id,
         content:contents})  
     id++
+    saveTaskToLocalStorage()
     listTodos();
-console.log(todosList);
+    console.log(todosList);
 
 }
 
@@ -60,6 +50,7 @@ function listTodos(){
           </li>
         `      
     }
+    // saveTaskToLocalStorage()
     bindEvents()
 }
 
@@ -82,6 +73,7 @@ function bindEvents(){
         completedBtn.addEventListener("click",completedButtons)
 
     }
+    saveTaskToLocalStorage()
 
 }
 
@@ -96,6 +88,7 @@ function editButtons(){
     const newToDo = prompt("ne ile değiştirmek istersiniz?")
     this.parentElement.previousElementSibling.innerText = newToDo
     console.log(newToDo)
+
 }
 
 
@@ -118,6 +111,29 @@ function deleteButtons(){
     }
     listTodos()
     // this.parentElement.parentElement.remove()
+
 }
 
+
+const body = document.querySelector(".darkMode")
+const header = document.querySelector(".header")
+const sun = document.querySelector(".header img")
+const moon = document.querySelector(".moon")
+
+sun.addEventListener("click", lightMode)
+
+function lightMode(){
+    console.log("kjdfgkdfjgb");
+    body.classList.add("sunmode")
+    sun.style.display="none"
+    moon.style.display="block"
+}
+
+moon.addEventListener("click", darkMode)
+
+function darkMode(){
+    body.classList.remove("sunmode")
+    sun.style.display="block"
+    moon.style.display="none"
+}
 

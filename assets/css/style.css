@@ -110,3 +110,43 @@ a{text-decoration: none;}
     opacity: 0.1;
     /* text-decoration: line-through; */
 }
+.sunmode{
+    background-color: hsl(240, 22%, 95%);
+    font-family: "Josefin Sans", sans-serif;
+    background-image: url("../img/bg-desktop-light.jpg");
+    background-repeat:no-repeat;
+    background-position: top;
+    /* background-size: cover; */
+
+
+    .toDo{
+         background-color: hsl(240, 56%, 98%);
+     
+         input[type="text"]{
+           background-color: hsl(240, 56%, 98%);
+           color:  hsl(235, 24%, 19%);
+           
+         }
+         a{
+             background-color:hsl(233, 53%, 84%);
+         
+         }
+     }
+
+     .toDos{
+        background-color: hsl(240, 56%, 98%);
+    }
+    .todo{
+        border-bottom: 1px solid hsl(234, 11%, 36%) ;
+        color:  hsl(235, 24%, 19%);
+        
+    }
+
+    .btns{
+        a{
+         color:  hsl(235, 24%, 19%);
+         background-color:hsl(233, 98%, 83%);
+        }
+    }
+    
+}
