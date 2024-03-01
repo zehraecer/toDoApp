@@ -86,7 +86,8 @@ function bindEvents(){
 }
 
 function completedButtons(){
-    this.parentElement.previousSibling.classList.add("cross-out")
+    console.log( this.parentElement.previousElementSibling);
+    this.parentElement.previousElementSibling.classList.add("cross-out")
 }
 
 

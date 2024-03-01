@@ -107,5 +107,6 @@ a{text-decoration: none;}
     }
 }
 .cross-out{
-    text-decoration: line-through;
+    opacity: 0.1;
+    /* text-decoration: line-through; */
 }
