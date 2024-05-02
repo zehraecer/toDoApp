@@ -103,7 +103,7 @@ a {
 }
 
 .footer {
-    display: flex;
+    display: none;
     justify-content: space-between;
     padding: 30px 20px;
     border-radius: 0px 0px 10px 10px;
@@ -167,6 +167,16 @@ input[type="checkbox"] {
     span {
         margin-top: 11px;
     }
+
+}
+
+.active {
+
+    color: hsl(234, 11%, 52%);
+    text-decoration: line-through;
+
+
+
 }
 
 .cross-out {
