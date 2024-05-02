@@ -1,72 +1,87 @@
-*{
+* {
     padding: 0%;
     margin: 0%;
 
 }
-body{
+
+body {
     background-color: hsl(235, 21%, 11%);
-    font-family: "Josefin Sans", sans-serif;
+    font-family: Kumbh Sans, sans-serif;
     background-image: url("../img/bg-desktop-dark.jpg");
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     background-position: top;
     /* background-size: cover; */
-    
+
 }
-.img{
+
+.img {
     width: 100%;
 }
 
-a{text-decoration: none;}
-.container{
+a {
+    text-decoration: none;
+}
+
+.container {
     max-width: 710px;
     margin-inline: auto;
     margin-top: 50px;
+    /* padding-right: 20px;
+    padding-left: 20px; */
+
+
 }
-.header{
-    width: 100%;
-    display:flex;
+
+.header {
+    display: flex;
     justify-content: space-between;
     margin-bottom: 55px;
-    
-    h1{
+
+
+    h1 {
         opacity: 0.9;
         color: #fff;
         margin-top: 20px;
         letter-spacing: 15px
     }
-    img{
+
+    img {
         width: 35px;
         height: 35px;
         padding: 10px;
         padding-right: 15px;
     }
 }
-.toDo{
-   padding: 10px;
+
+
+
+.toDo {
+    padding: 10px;
     display: flex;
     justify-content: space-between;
     background-color: hsl(235, 24%, 19%);
     border-radius: 15px;
     margin-bottom: 30px;
 
-    input[type="text"]{
-      width: 500px;
-      background-color: hsl(235, 24%, 19%);
-      padding: 20px;
-      border: none;
-      border-radius: 10px;
-      color:  hsl(234, 11%, 52%);
-      font-weight: 500;
-      font-size: 22px;
-      
+    input[type="text"] {
+        width: 500px;
+        background-color: hsl(235, 24%, 19%);
+        padding: 20px;
+        border: none;
+        border-radius: 10px;
+        color: hsl(234, 11%, 52%);
+        font-weight: 500;
+        font-size: 22px;
+
     }
-    input[type="text"]:focus{
+
+    input[type="text"]:focus {
         outline: none;
     }
-   
-    a{
+
+    button {
         padding: 10px;
-        background-color:hsl(233, 23%, 51%);
+        background-color: hsl(233, 23%, 51%);
         border-radius: 20px;
         padding-right: 10px;
         padding-top: 25px;
@@ -74,79 +89,138 @@ a{text-decoration: none;}
         font-size: 22px;
         color: hsl(235, 24%, 19%);
         cursor: pointer;
-    
+        border: none;
+
     }
 }
 
-.toDos{
+.toDos {
     background-color: hsl(235, 24%, 19%);
-    border-radius: 10px;
-    margin-bottom: 40px;
+    /* border-radius: 10px; */
+    border-radius: 10px 10px 0px 0px;
     border-bottom: none;
+    /* margin-inline: 20px; */
 }
-.todo{
+
+.footer {
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid hsl(234, 11%, 36%) ;
-    border-radius: 0px;
+    padding: 30px 20px;
+    border-radius: 0px 0px 10px 10px;
+
+
+
+}
+
+.footer h2,
+h3,
+h4,
+h5 {
+    color: hsl(234, 11%, 52%);
+    font-size: 20px;
+    font-weight: 400;
+}
+
+.footerMiddle {
+    display: flex;
+    gap: 10px;
+}
+
+.todo {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid hsl(234, 11%, 36%);
     color: #fff;
     list-style: none;
     font-weight: 500;
     font-size: 20px;
-    padding: 28px;
-    
+    padding: 22px;
+
 }
-.btns{
-    a{
-     padding: 10px;
-     font-weight: 500;
-     font-size: 22px;
-     color: hsl(235, 17%, 87%);
-    background-color:hsl(233, 23%, 51%);
-    border-radius: 10px;
+
+
+.btns {
+    /* padding: 5px; */
+
+    a {
+        color: hsl(234, 11%, 52%);
+        font-size: 30px;
+        font-weight: 400;
+
     }
 }
-.cross-out{
+
+input[type="checkbox"] {
+    width: 45px;
+    /* Set width */
+    height: 45px;
+    /* Set height */
+    clip-path: circle(46% at 50% 50%);
+    /* Set the clip path of circle*/
+    background-color: antiquewhite;
+}
+
+.todooContent {
+    display: flex;
+    gap: 30px;
+
+    span {
+        margin-top: 11px;
+    }
+}
+
+.cross-out {
     opacity: 0.1;
     /* text-decoration: line-through; */
 }
-.sunmode{
+
+.sunmode {
     background-color: hsl(240, 22%, 95%);
     font-family: "Josefin Sans", sans-serif;
     background-image: url("../img/bg-desktop-light.jpg");
-    background-repeat:no-repeat;
+    background-repeat: no-repeat;
     background-position: top;
-    /* background-size: cover; */
 
 
-    .toDo{
-         background-color: hsl(240, 56%, 98%);
-     
-         input[type="text"]{
-           background-color: hsl(240, 56%, 98%);
-           color:  hsl(235, 24%, 19%);
-           
-         }
-         a{
-             background-color:hsl(233, 53%, 84%);
-         
-         }
-     }
-
-     .toDos{
+    .toDo {
         background-color: hsl(240, 56%, 98%);
-    }
-    .todo{
-        border-bottom: 1px solid hsl(234, 11%, 36%) ;
-        color:  hsl(235, 24%, 19%);
-        
-    }
 
-    .btns{
-        a{
-         color:  hsl(235, 24%, 19%);
-         background-color:hsl(233, 98%, 83%);
+        input[type="text"] {
+            background-color: hsl(240, 56%, 98%);
+            color: hsl(235, 24%, 19%);
+
+        }
+
+        a {
+            background-color: hsl(233, 53%, 84%);
+
         }
     }
-    
+
+    .toDos {
+        background-color: hsl(240, 56%, 98%);
+    }
+
+    .todo {
+        border-bottom: 1px solid hsl(234, 11%, 36%);
+        color: hsl(235, 24%, 19%);
+
+    }
+
+    .btns {
+        a {
+            color: hsl(235, 24%, 19%);
+            background-color: hsl(233, 98%, 83%);
+        }
+    }
+
 }
+
+.sun,
+.moon {
+    cursor: pointer;
+}
+
+/* mobil */
+
+@media (width >=427px) {}

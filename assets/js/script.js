@@ -1,139 +1,135 @@
-const newToDo = document.querySelector(".newToDo")
-const addBtn = document.querySelector(".addBtn")
-const todos = document.querySelector(".toDos")
-let id = 0;
-// let todosList=[]
-let todosList =JSON.parse(localStorage.getItem('todolar')) || [];
+import { saveTaskToLocalStorage } from "./local.js"
+import { bindEventsAll } from "./bind.js"
+import { bindEvents } from "./bind.js"
+import { qs } from "./qs.js"
 
-function saveTaskToLocalStorage(){
-    return localStorage.setItem('todolar', JSON.stringify(todosList));
+
+export let todoList = JSON.parse(localStorage.getItem('todolar')) || [];
+const todos = qs(".toDos")
+const todoForm = qs(".todoForm")
+
+const fiveItems = qs(".fiveItems")
+
+
+fiveItems.addEventListener("click", (e) => {
+    e.preventDefault();
+    console.log("mdfkbfgb");
+});
+
+// function saveTaskToLocalStorage() {
+//     return localStorage.setItem('todolar', JSON.stringify(todoList));
+// }
+
+
+
+function createUniqueId() {
+    let id = 1;
+    for (const todoId of todoList) {
+        if (todoId.id === id) {
+            id += 1;
+        }
+    }
+    return id++;
 }
 
 
 
-addBtn.addEventListener("click",addTodo)
-function inputValue(){
-    let content = newToDo.value
+todoForm.addEventListener("submit", (e) => {
+    e.preventDefault()
+
+
+    const newContent = todoForm["newTodo"].value
+
+    const contents = {
+
+        id: createUniqueId(),
+        content: newContent
+    }
+
+    todoList.push(contents)
     saveTaskToLocalStorage()
-    return content
-}
-
-
-
-
-
-function addTodo(){
-    let contents = inputValue()
-    todosList.push({
-        id:id,
-        content:contents})  
-    id++
-    saveTaskToLocalStorage()
-    listTodos();
-    console.log(todosList);
-
-}
-
-function listTodos(){
-    todos.innerHTML="";
-    for (const  todo of todosList) {
-        todos.innerHTML+=`
-        <li  class="todo" data-todoid="${todo.id}">
-                <span>
-                    ${todo.content}
-                </span>
-                <div class="btns">
-                    <a class="deleteBtn" href="#">Sil</a>
-                    <a class="editBtn" href="#">Düzenle</a> 
-                    <a class="completedBtn" href="#">Tamamlandı</a>
-                </div> 
-          </li>
-        `      
-    }
-    // saveTaskToLocalStorage()
-    bindEvents()
-}
-
-
-
-function bindEvents(){
-    const deleteBtns = document.querySelectorAll(".deleteBtn")
-    const editBtns = document.querySelectorAll(".editBtn")
-    const completedBtns = document.querySelectorAll(".completedBtn")
-
-    for (const deleteBtn of deleteBtns) {
-        deleteBtn.addEventListener("click",deleteButtons)
-
-    }
-    for (const editBtn of editBtns) {
-        editBtn.addEventListener("click",editButtons)
-
-    }
-    for (const completedBtn of completedBtns) {
-        completedBtn.addEventListener("click",completedButtons)
-
-    }
-    saveTaskToLocalStorage()
-
-}
-
-function completedButtons(){
-    console.log( this.parentElement.previousElementSibling);
-    this.parentElement.previousElementSibling.classList.add("cross-out")
-}
-
-
-function editButtons(){
-    console.log("djfkgndfkjgn");
-    const newToDo = prompt("ne ile değiştirmek istersiniz?")
-    this.parentElement.previousElementSibling.innerText = newToDo
-    console.log(newToDo)
-
-}
-
-
-function deleteButtons(){
-    //  console.log(todo.remove(Number(this.parentElement.parentElement.id),1))
-    //  let contents = inputValue()
-    // console.log(this.parentElement.parentElement.dataset.todoid);
-    // for (const todo of todosList) {
-    //     if(this.parentElement.parentElement.dataset.todoid == todo.id ){
-    //     //   console.log(todo);
-    //       todosList.splice(Number(todo.id),1)
-    //      
-    //     }
-    // }
-
-
-    const index = todosList.findIndex((todo)=>Number(todo.id)===Number(this.parentElement.parentElement.dataset.todoid))
-    if(index !== -1){
-       todosList.splice(index,1)
-    }
     listTodos()
+})
+
+
+function listTodos() {
+    todos.innerHTML = "";
+
+
+    for (const todo of todoList) {
+        todos.innerHTML += `
+            <li  class="todo" data-todoid="${todo.id}">
+    
+                    <div class="todooContent">
+                            <input type="checkbox" id="checkbox"/>
+                                <span>
+                                    ${todo.content}
+                                </span>
+                            
+                    </div>
+    
+                    <div class="btns">
+                        <a class="deleteBtn" href="#">X</a>
+                    </div> 
+    
+            </li>
+    
+     
+    
+            `
+    }
+
+
+    bindEventsAll(".deleteBtn", "click", deleteButtons)
+    bindEvents("#checkbox", "click", completedBtn)
+
+
+}
+
+
+
+function completedBtn() {
+    console.log("dfgbfgh");
+}
+
+
+function deleteButtons() {
+
+    const index = todoList.findIndex((todo) => Number(todo.id) === Number(this.parentElement.parentElement.dataset.todoid))
+    if (index !== -1) {
+        todoList.splice(index, 1)
+    }
+
+    saveTaskToLocalStorage()
+    listTodos()
+
     // this.parentElement.parentElement.remove()
 
 }
 
 
-const body = document.querySelector(".darkMode")
-const header = document.querySelector(".header")
-const sun = document.querySelector(".header img")
-const moon = document.querySelector(".moon")
+
+
+
+const body = qs(".darkMode")
+const header = qs(".header")
+const sun = qs(".header img")
+const moon = qs(".moon")
 
 sun.addEventListener("click", lightMode)
 
-function lightMode(){
+function lightMode() {
     console.log("kjdfgkdfjgb");
     body.classList.add("sunmode")
-    sun.style.display="none"
-    moon.style.display="block"
+    sun.style.display = "none"
+    moon.style.display = "block"
 }
 
 moon.addEventListener("click", darkMode)
 
-function darkMode(){
+function darkMode() {
     body.classList.remove("sunmode")
-    sun.style.display="block"
-    moon.style.display="none"
+    sun.style.display = "block"
+    moon.style.display = "none"
 }
 

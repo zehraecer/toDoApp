@@ -1,37 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
+
 <body class="darkMode">
 
-<!-- <img class="img" src="assets/img/bg-desktop-dark.jpg" alt=""> -->
-    
-    <div class="container">
-        <div class="header">
-            <h1>TODO</h1>
-            <img class="sun" src="assets/img/icon-sun.svg" alt="" >
-            <img class="moon" src="assets/img/icon-moon.svg" alt="" style="display: none;"  >
+    <!-- <img class="img" src="assets/img/bg-desktop-dark.jpg" alt=""> -->
+
+    <div class="header container">
+        <h1>TODO</h1>
+        <img class="sun" src="assets/img/icon-sun.svg" alt="">
+        <img class="moon" src="assets/img/icon-moon.svg" alt="" style="display: none;">
+    </div>
+
+    <form class="todoForm">
+
+        <div class="toDo container">
+            <input type="text" class="newToDo" onfocus="this.value=''" placeholder="Create a new todo..."
+                name="newTodo">
+            <button type="submit" class="addBtn">Ekle</button>
         </div>
-        
-        <div class="toDo">
-            <input type="text" class="newToDo" onfocus="this.value=''" placeholder="Create a new todo...">
-            <a href="#" class="addBtn">Ekle</a>
-       </div>
-      
-    <div class="toDos">
 
+    </form>
+
+    <div class="content  container">
+
+
+        <div class="toDos">
+
+        </div>
+
+
+        <div class="footer toDos">
+            <h3 class="fiveItems">5 items left</h3>
+
+            <div class="footerMiddle">
+                <h2>All</h2>
+                <h3>Active</h3>
+                <h4>Completed</h4>
+            </div>
+
+            <h5>Clear Comleted</h5>
+        </div>
     </div>
 
-    </div>
 
 
-    <script src="assets/js/script.js"></script>
+
+    <script type="module" src="assets/js/script.js"></script>
 </body>
+
 </html>
