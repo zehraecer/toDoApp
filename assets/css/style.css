@@ -164,11 +164,18 @@ input[type="checkbox"] {
     display: flex;
     gap: 30px;
 
-    span {
-        margin-top: 11px;
-    }
+
 
 }
+
+.noActive {
+
+    /* margin-top: 11px; */
+    color: #fff;
+    text-decoration: none;
+
+}
+
 
 .clearCompleted {
     cursor: pointer;

@@ -10,7 +10,7 @@ export let todoList = JSON.parse(localStorage.getItem('todolar')) || [];
 const todos = qs(".toDos")
 const todoForm = qs(".todoForm")
 const footer = qs(".footer")
-const fiveItems = qs(".clearCompleted")
+const clrCompleted = qs(".clearCompleted")
 
 export let completedList = JSON.parse(localStorage.getItem('todolar')) || []
 
@@ -71,14 +71,13 @@ todoForm.addEventListener("submit", (e) => {
 function listTodos() {
     todos.innerHTML = "";
 
-
     for (const todo of todoList) {
         todos.innerHTML += `
             <li  class="todo" data-todoid="${todo.id}">
     
                     <div class="todooContent">
                          <a href="" id="checkbox"> <i class="fa-regular fa-thumbs-up"></i></a>
-                                <span  >
+                                <span  class="${todo.isCompleted ? "active" : "noActive"}">
                                     ${todo.content}
                                 </span>
                             
@@ -95,23 +94,23 @@ function listTodos() {
     
             `
     }
-
-
     bindEventsAll(".deleteBtn", "click", deleteButtons)
     bindEventsAll(".editBtn", "click", editBtns)
+    bindEvents(".clearCompleted", "click", clearCompleted)
     bindEventsAll("#checkbox", "click", completedBtn)
-    bindEvents(".clearCompleted", "click", showFiveItems)
     footerActive()
-
 
 }
 
 
 
 
-function showFiveItems() {
+function clearCompleted(e) {
+    e.preventDefault()
+    console.log("skfnvgf");
 
-    listTodos()
+    let x = todoList.filter(user => user.isCompleted == false)
+
 
 }
 
@@ -122,37 +121,24 @@ function completedBtn(e) {
     e.preventDefault()
 
     let thisId = this.parentElement.parentElement.dataset.todoid
-    console.log(thisId);
+    const x = this.nextElementSibling;
 
-    const completed = todoList.findIndex(user => user.id == thisId)
-    const completedx = todoList.find(user => user.id == thisId)
-    const x = completedList.find(user => user.id == thisId)
-
-    const y = completedList.filter(user => user.id == thisId)
-    console.log(y);
+    const completedz = todoList.find(user => user.id == thisId)
 
 
-    if (!x) {
-        completedList.push(completedx)
-        todoList.splice(completed, 1);
-
+    if (completedz.isCompleted === false) {
+        x.classList.add("active")
+        completedz.isCompleted = true
+    } else {
+        completedz.isCompleted = false
+        x.classList.remove("active")
     }
-    else if (!completedx) { }
 
-    else {
-        completedList.splice(completed, 1);
-    }
+    completedList = todoList.filter(user => user.isCompleted == true)
+    console.log(completedList);
 
     saveTaskToLocalStorage()
     completedListLocal()
-
-
-    console.log(completedList);
-    console.log(todoList);
-
-    const checkbox = this.nextElementSibling;
-    checkbox.classList.toggle("active")
-
 
 }
 
@@ -187,8 +173,9 @@ function deleteButtons() {
     const index = todoList.findIndex((todo) => Number(todo.id) === Number(this.parentElement.parentElement.dataset.todoid))
     if (index !== -1) {
         todoList.splice(index, 1)
+        completedList.splice(index, 1)
     }
-
+    completedListLocal()
     saveTaskToLocalStorage()
     listTodos()
 
