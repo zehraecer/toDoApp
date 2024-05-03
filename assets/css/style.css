@@ -170,6 +170,11 @@ input[type="checkbox"] {
 
 }
 
+.clearCompleted {
+    cursor: pointer;
+}
+
+
 .active {
 
     color: hsl(234, 11%, 52%);

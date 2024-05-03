@@ -1,24 +1,20 @@
 import { saveTaskToLocalStorage } from "./local.js"
+import { completedListLocal } from "./local.js"
 import { bindEventsAll } from "./bind.js"
 import { bindEvents } from "./bind.js"
 import { qs } from "./qs.js"
 import { qsAll } from "./qs.js"
-import { completedContentList } from "./local.js"
 
 
-export let completedList = JSON.parse(localStorage.getItem('completedList')) || []
 export let todoList = JSON.parse(localStorage.getItem('todolar')) || [];
 const todos = qs(".toDos")
 const todoForm = qs(".todoForm")
 const footer = qs(".footer")
+const fiveItems = qs(".clearCompleted")
 
-const fiveItems = qs(".fiveItems")
+export let completedList = JSON.parse(localStorage.getItem('todolar')) || []
 
 
-fiveItems.addEventListener("click", (e) => {
-    e.preventDefault();
-    console.log("mdfkbfgb");
-});
 
 // function saveTaskToLocalStorage() {
 //     return localStorage.setItem('todolar', JSON.stringify(todoList));
@@ -61,12 +57,14 @@ todoForm.addEventListener("submit", (e) => {
     const contents = {
 
         id: createUniqueId(),
-        content: newContent
+        content: newContent,
+        isCompleted: false
     }
 
     todoList.push(contents)
     saveTaskToLocalStorage()
     listTodos()
+    e.target.reset()
 })
 
 
@@ -79,7 +77,7 @@ function listTodos() {
             <li  class="todo" data-todoid="${todo.id}">
     
                     <div class="todooContent">
-                            <input type="checkbox" id="checkbox" value="1"/>
+                         <a href="" id="checkbox"> <i class="fa-regular fa-thumbs-up"></i></a>
                                 <span  >
                                     ${todo.content}
                                 </span>
@@ -102,35 +100,83 @@ function listTodos() {
     bindEventsAll(".deleteBtn", "click", deleteButtons)
     bindEventsAll(".editBtn", "click", editBtns)
     bindEventsAll("#checkbox", "click", completedBtn)
+    bindEvents(".clearCompleted", "click", showFiveItems)
     footerActive()
 
 
+}
+
+
+
+
+function showFiveItems() {
+
+    listTodos()
 
 }
 
 
 
-function completedBtn() {
 
-    const span = this.parentElement.parentElement.dataset.todoid;
-    let completedContent = todoList.find(user => user.id == span)
-    let list = completedContent;
-    console.log(list);
-    completedList.push(list)
+function completedBtn(e) {
+    e.preventDefault()
+
+    let thisId = this.parentElement.parentElement.dataset.todoid
+    console.log(thisId);
+
+    const completed = todoList.findIndex(user => user.id == thisId)
+    const completedx = todoList.find(user => user.id == thisId)
+    const x = completedList.find(user => user.id == thisId)
+
+    const y = completedList.filter(user => user.id == thisId)
+    console.log(y);
+
+
+    if (!x) {
+        completedList.push(completedx)
+        todoList.splice(completed, 1);
+
+    }
+    else if (!completedx) { }
+
+    else {
+        completedList.splice(completed, 1);
+    }
+
+    saveTaskToLocalStorage()
+    completedListLocal()
+
+
     console.log(completedList);
+    console.log(todoList);
 
-    completedContentList()
-
-
+    const checkbox = this.nextElementSibling;
+    checkbox.classList.toggle("active")
 
 
 }
+
+
+
 
 
 function editBtns() {
 
+    const capturedId = this.parentElement.parentElement.dataset.todoid
     let answer = prompt("ne ile değiştirmek istesrsiniz")
-    this.parentElement.previousElementSibling.lastElementChild.textContent = answer
+    console.log(capturedId);
+
+    const newComment = todoList.map(user => {
+        if (user.id == capturedId) {
+            console.log(user.content);
+            user.content = answer
+        }
+        return user
+    })
+    saveTaskToLocalStorage()
+    listTodos()
+
+    console.log(newComment);
 
 
 }
@@ -176,3 +222,4 @@ function darkMode() {
     moon.style.display = "none"
 }
 
+listTodos()
