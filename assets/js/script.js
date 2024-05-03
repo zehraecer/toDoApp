@@ -97,19 +97,37 @@ function listTodos() {
     bindEventsAll(".deleteBtn", "click", deleteButtons)
     bindEventsAll(".editBtn", "click", editBtns)
     bindEvents(".clearCompleted", "click", clearCompleted)
+    bindEvents(".todoCompleted", "click", todoCompleted)
+    bindEvents(".todoAll", "click", todoAll)
     bindEventsAll("#checkbox", "click", completedBtn)
     footerActive()
 
 }
 
 
+function todoCompleted() {
+    let completedTodos = todoList.filter(user => user.isCompleted == true)
+    todoList = completedTodos
+    listTodos()
+
+}
+
+function todoAll() {
+    listTodos();
+}
 
 
 function clearCompleted(e) {
     e.preventDefault()
     console.log("skfnvgf");
 
-    let x = todoList.filter(user => user.isCompleted == false)
+    let activeTodos = todoList.filter(user => user.isCompleted == false)
+
+    todoList = activeTodos
+
+    saveTaskToLocalStorage()
+
+    listTodos()
 
 
 }
