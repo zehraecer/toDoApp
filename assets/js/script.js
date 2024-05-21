@@ -14,15 +14,10 @@ const clrCompleted = qs(".clearCompleted")
 
 export let completedList = JSON.parse(localStorage.getItem('todolar')) || []
 
-
-
-// function saveTaskToLocalStorage() {
-//     return localStorage.setItem('todolar', JSON.stringify(todoList));
+// function todoAll() {
+//     console.log(todoList);
+//     listTodos()
 // }
-
-
-
-
 
 function footerActive() {
     if (todoList.length >= 1) {
@@ -76,7 +71,7 @@ function listTodos() {
             <li  class="todo" data-todoid="${todo.id}">
     
                     <div class="todooContent">
-                         <a href="" id="checkbox"> <i class="fa-regular fa-thumbs-up"></i></a>
+                         <a href="" id="checkbox"><i class="fa-solid fa-thumbs-up"></i></a>
                                 <span  class="${todo.isCompleted ? "active" : "noActive"}">
                                     ${todo.content}
                                 </span>
@@ -97,25 +92,26 @@ function listTodos() {
     bindEventsAll(".deleteBtn", "click", deleteButtons)
     bindEventsAll(".editBtn", "click", editBtns)
     bindEvents(".clearCompleted", "click", clearCompleted)
-    bindEvents(".todoCompleted", "click", todoCompleted)
-    bindEvents(".todoAll", "click", todoAll)
+    // bindEvents(".todoCompleted", "click", todoCompleted)
+    // bindEvents(".todoActive", "click", todoActive)
+    // bindEvents(".all", "click", todoAll)
     bindEventsAll("#checkbox", "click", completedBtn)
     footerActive()
 
 }
 
 
-function todoCompleted() {
-    let completedTodos = todoList.filter(user => user.isCompleted == true)
-    todoList = completedTodos
-    listTodos()
+// function todoActive() {
+//     let completedTodos = todoList.filter(user => user.isCompleted == false)
+//     todoList = completedTodos
+//     listTodos()
+// }
 
-}
-
-function todoAll() {
-    listTodos();
-}
-
+// function todoCompleted() {
+//     let completedTodos = todoList.filter(user => user.isCompleted == true)
+//     todoList = completedTodos
+//     listTodos()
+// }
 
 function clearCompleted(e) {
     e.preventDefault()
@@ -125,22 +121,17 @@ function clearCompleted(e) {
 
     todoList = activeTodos
 
-    saveTaskToLocalStorage()
 
     listTodos()
 
 
 }
 
-
-
-
 function completedBtn(e) {
     e.preventDefault()
 
     let thisId = this.parentElement.parentElement.dataset.todoid
     const x = this.nextElementSibling;
-
     const completedz = todoList.find(user => user.id == thisId)
 
 
@@ -160,10 +151,6 @@ function completedBtn(e) {
 
 }
 
-
-
-
-
 function editBtns() {
 
     const capturedId = this.parentElement.parentElement.dataset.todoid
@@ -179,12 +166,7 @@ function editBtns() {
     })
     saveTaskToLocalStorage()
     listTodos()
-
-    console.log(newComment);
-
-
 }
-
 
 function deleteButtons() {
 
@@ -197,14 +179,10 @@ function deleteButtons() {
     saveTaskToLocalStorage()
     listTodos()
 
-    // this.parentElement.parentElement.remove()
 
 }
 
-
-
-
-
+// dark&light mode kodları
 const body = qs(".darkMode")
 const header = qs(".header")
 const sun = qs(".header img")
